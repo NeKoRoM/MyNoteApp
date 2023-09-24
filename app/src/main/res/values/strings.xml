@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyNoteApp</string>
+    <string name="room_database">Room Database</string>
+    <string name="fire_base">Firebase\n</string>
 </resources>
