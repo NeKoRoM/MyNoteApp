@@ -10,7 +10,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -51,10 +50,12 @@ fun StartScreen(navHostController: NavHostController) {
             Text(text = "What we will use")
             Button(
                 onClick = {
-                    mViewModel.initDatabase(TYPE_ROOM)
-                    navHostController.navigate(route = NavRote.Main.route)
+                    mViewModel.initDatabase(TYPE_ROOM) {
+                        navHostController.navigate(route = NavRote.Main.route)
+                    }
 
-                          },
+
+                },
                 modifier = Modifier
                     .width(200.dp)
                     .padding(vertical = 8.dp)
@@ -64,11 +65,12 @@ fun StartScreen(navHostController: NavHostController) {
             }
             Button(
                 onClick = {
-                    mViewModel.initDatabase(TYPE_FIREBASE)
+                    mViewModel.initDatabase(TYPE_FIREBASE) {
+                        navHostController.navigate(route = NavRote.Main.route)
+                    }
 
-                    navHostController.navigate(route = NavRote.Main.route)
 
-                          },
+                },
                 modifier = Modifier
                     .width(200.dp)
                     .padding(vertical = 8.dp)

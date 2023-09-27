@@ -3,51 +3,27 @@ package com.example.mynoteapp
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.mynoteapp.model.Note
-import com.example.mynoteapp.utils.TYPE_FIREBASE
+import com.example.mynoteapp.database.room.AppRoomDatabase
+import com.example.mynoteapp.database.room.repository.RoomRepository
+import com.example.mynoteapp.utils.REPOSITORY
 import com.example.mynoteapp.utils.TYPE_ROOM
-import java.lang.IllegalArgumentException
 
 class MainViewModel(application: Application):AndroidViewModel(application) {
 
-    val readTest: MutableLiveData<List<Note>> by lazy {
-        MutableLiveData<List<Note>>()
-    }
+    val context = application
+    fun initDatabase(type: String, onSuccess: () -> Unit) {
 
-    val dbType: MutableLiveData<String> by lazy {
-        MutableLiveData<String>(TYPE_ROOM)
-    }
-    init {
-        readTest.value =
-            when(dbType.value){
-                TYPE_ROOM->{
-                    listOf(
-
-
-                        Note(title = "title 1", subtitle = "subtitle 1"),
-                        Note(title = "title 2", subtitle = "subtitle 1"),
-                        Note(title = "title 3", subtitle = "subtitle 1"),
-                        Note(title = "title 4", subtitle = "subtitle 1"),
-                        Note(title = "title 5", subtitle = "subtitle 1"),
-
-                    )
-                }
-                TYPE_FIREBASE->{
-                    listOf<Note>()
-                }
-                else ->{
-                    listOf<Note>()
-                }
+        Log.d("checkData", "MainViewModel initDatabase with type: $type")
+        when (type) {
+            TYPE_ROOM -> {
+                val dao = AppRoomDatabase.getInstance(context = context).getRoomDao()
+                REPOSITORY = RoomRepository(dao)
+                onSuccess()
             }
-    }
+        }
 
-
-    fun initDatabase(type: String){
-        dbType.value = type
-        Log.d("checkData","MainViewModel initDatabase with type: $type")
 
     }
 }
