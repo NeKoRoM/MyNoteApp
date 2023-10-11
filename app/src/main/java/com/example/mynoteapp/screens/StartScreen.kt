@@ -28,11 +28,7 @@ import com.example.mynoteapp.utils.TYPE_FIREBASE
 import com.example.mynoteapp.utils.TYPE_ROOM
 
 @Composable
-fun StartScreen(navHostController: NavHostController) {
-    val context = LocalContext.current
-    val mViewModel: MainViewModel =
-        viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-
+fun StartScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
 
 
     Scaffold(
@@ -87,7 +83,11 @@ fun StartScreen(navHostController: NavHostController) {
 @Composable
 fun previewStartScreen() {
     MyNoteAppTheme {
-        StartScreen(navHostController = rememberNavController())
+        val context = LocalContext.current
+        val mViewModel: MainViewModel =
+            viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+
+        StartScreen(navHostController = rememberNavController(), mViewModel)
     }
 
 }

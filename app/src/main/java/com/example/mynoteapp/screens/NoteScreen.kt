@@ -14,10 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import com.example.mynoteapp.MainViewModel
 
 @Composable
-fun NoteScreen(navHostController: NavHostController) {
+fun NoteScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -57,6 +57,6 @@ fun NoteScreen(navHostController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun NoteScreenPreview() {
-    NoteScreen(navHostController = rememberNavController())
+    // NoteScreen(navHostController = rememberNavController(), mViewModel = mViewModel)
 
 }
