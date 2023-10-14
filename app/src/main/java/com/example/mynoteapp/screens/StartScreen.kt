@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -21,9 +20,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.mynoteapp.MainViewModel
 import com.example.mynoteapp.MainViewModelFactory
-import com.example.mynoteapp.R
 import com.example.mynoteapp.navigation.NavRote
 import com.example.mynoteapp.ui.theme.MyNoteAppTheme
+import com.example.mynoteapp.utils.Constants
 import com.example.mynoteapp.utils.TYPE_FIREBASE
 import com.example.mynoteapp.utils.TYPE_ROOM
 
@@ -43,7 +42,7 @@ fun StartScreen(navHostController: NavHostController, mViewModel: MainViewModel)
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "What we will use")
+            Text(text = Constants.Keys.WHAT_WE_WILL_USE)
             Button(
                 onClick = {
                     mViewModel.initDatabase(TYPE_ROOM) {
@@ -56,7 +55,7 @@ fun StartScreen(navHostController: NavHostController, mViewModel: MainViewModel)
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = stringResource(R.string.room_database))
+                Text(text = Constants.Keys.ROOM_DATABASE)
 
             }
             Button(
@@ -71,7 +70,7 @@ fun StartScreen(navHostController: NavHostController, mViewModel: MainViewModel)
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = stringResource(R.string.fire_base))
+                Text(text = Constants.Keys.FIREBASE)
 
             }
         }

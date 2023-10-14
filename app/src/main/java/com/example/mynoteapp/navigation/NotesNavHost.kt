@@ -10,12 +10,17 @@ import com.example.mynoteapp.screens.AddScreen
 import com.example.mynoteapp.screens.MainScreen
 import com.example.mynoteapp.screens.NoteScreen
 import com.example.mynoteapp.screens.StartScreen
+import com.example.mynoteapp.utils.Constants
+import com.example.mynoteapp.utils.Constants.Screens.ADD_SCREEN
+import com.example.mynoteapp.utils.Constants.Screens.MAIN_SCREEN
+import com.example.mynoteapp.utils.Constants.Screens.NOTE_SCREEN
+import com.example.mynoteapp.utils.Constants.Screens.START_SCREEN
 
 sealed class NavRote(val route: String) {
-    object Start: NavRote("start_screen")
-    object Main: NavRote("main_screen")
-    object Add: NavRote("add_screen")
-    object Note: NavRote("note_screen")
+    object Start : NavRote(START_SCREEN)
+    object Main : NavRote(MAIN_SCREEN)
+    object Add : NavRote(ADD_SCREEN)
+    object Note : NavRote(NOTE_SCREEN)
 
 
 }
@@ -34,8 +39,12 @@ fun NotesNavHost(mViewModel: MainViewModel) {
         composable(NavRote.Add.route) {
             AddScreen(navHostController = navController, mViewModel = mViewModel)
         }
-        composable(NavRote.Note.route){
-            NoteScreen(navHostController = navController, mViewModel = mViewModel)
+        composable(NavRote.Note.route + "/{${Constants.Keys.ID}}") { backStackEntery ->
+            NoteScreen(
+                navHostController = navController,
+                mViewModel = mViewModel,
+                noteID = backStackEntery.arguments?.getString(Constants.Keys.ID)
+            )
         }
 
 

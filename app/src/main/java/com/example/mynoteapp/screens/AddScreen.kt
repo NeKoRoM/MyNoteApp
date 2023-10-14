@@ -3,7 +3,7 @@ package com.example.mynoteapp.screens
 import android.app.Application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -28,6 +28,8 @@ import com.example.mynoteapp.MainViewModel
 import com.example.mynoteapp.MainViewModelFactory
 import com.example.mynoteapp.model.Note
 import com.example.mynoteapp.navigation.NavRote
+import com.example.mynoteapp.utils.Constants
+
 
 @Composable
 fun AddScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
@@ -37,12 +39,12 @@ fun AddScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
 
     Scaffold { values ->
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Add new note",
+                text = Constants.Keys.ADD_NEW_NOTE,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(vertical = 8.dp)
@@ -53,7 +55,7 @@ fun AddScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
                     title = it
                     isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
-                label = { Text(text = "title") },
+                label = { Text(text = Constants.Keys.NOTE_TITLE) },
                 isError = title.isEmpty()
             )
 
@@ -63,7 +65,7 @@ fun AddScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
                     subtitle = it
                     isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
-                label = { Text(text = "subtitle") },
+                label = { Text(text = Constants.Keys.NOTE_SUBTITLE) },
                 isError = subtitle.isEmpty()
             )
 
@@ -77,7 +79,7 @@ fun AddScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
 
                 }, modifier = Modifier.padding(top = 16.dp)
             ) {
-                Text(text = "Add note")
+                Text(text = Constants.Keys.ADD_NOTE)
 
             }
         }
