@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -52,6 +53,7 @@ android {
 
 dependencies {
 
+
     val nav_version = "2.7.1"
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
@@ -73,10 +75,15 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
 
-
     val room_version = "2.5.2"
-    implementation ("androidx.room:room-runtime:$room_version")
-    kapt ("androidx.room:room-compiler:$room_version")
-    implementation ("androidx.room:room-ktx:$room_version")
-    implementation ("androidx.compose.runtime:runtime-livedata:1.5.1")
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.1")
+
+    //fierbase
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation("com.google.firebase:firebase-database-ktx:20.2.2")
+
 }
