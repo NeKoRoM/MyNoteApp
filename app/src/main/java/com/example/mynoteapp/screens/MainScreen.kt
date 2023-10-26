@@ -30,6 +30,10 @@ import com.example.mynoteapp.MainViewModel
 import com.example.mynoteapp.MainViewModelFactory
 import com.example.mynoteapp.model.Note
 import com.example.mynoteapp.navigation.NavRote
+import com.example.mynoteapp.utils.Constants.Keys.EMPTY
+import com.example.mynoteapp.utils.DB_TYPE
+import com.example.mynoteapp.utils.TYPE_FIREBASE
+import com.example.mynoteapp.utils.TYPE_ROOM
 
 @Composable
 fun MainScreen(navHostController: NavHostController, mViewModel: MainViewModel) {
@@ -72,11 +76,17 @@ fun MainScreen(navHostController: NavHostController, mViewModel: MainViewModel) 
 
 @Composable
 fun NoteItem(note: Note, navHostController: NavHostController) {
+    val noteID = when (DB_TYPE) {
+        TYPE_FIREBASE -> note.firebaseID
+        TYPE_ROOM -> note.id
+        else -> EMPTY
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp, horizontal = 24.dp)
-            .clickable { navHostController.navigate(NavRote.Note.route + "/${note.id}") },
+            .clickable { navHostController.navigate(NavRote.Note.route + "/${noteID}") },
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
     ) {
         Column(

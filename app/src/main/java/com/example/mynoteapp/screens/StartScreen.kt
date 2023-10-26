@@ -35,6 +35,7 @@ import com.example.mynoteapp.MainViewModelFactory
 import com.example.mynoteapp.navigation.NavRote
 import com.example.mynoteapp.ui.theme.MyNoteAppTheme
 import com.example.mynoteapp.utils.Constants
+import com.example.mynoteapp.utils.DB_TYPE
 import com.example.mynoteapp.utils.LOGIN
 import com.example.mynoteapp.utils.PASSWORD
 import com.example.mynoteapp.utils.TYPE_FIREBASE
@@ -66,6 +67,7 @@ fun StartScreen(navHostController: NavHostController, mViewModel: MainViewModel)
             Button(
                 onClick = {
                     mViewModel.initDatabase(TYPE_ROOM) {
+                        DB_TYPE = TYPE_ROOM
                         navHostController.navigate(route = NavRote.Main.route)
                     }
 
@@ -145,6 +147,8 @@ fun StartScreen(navHostController: NavHostController, mViewModel: MainViewModel)
                         LOGIN = login
                         PASSWORD = password
                         mViewModel.initDatabase(TYPE_FIREBASE) {
+                            DB_TYPE = TYPE_FIREBASE
+                            navHostController.navigate(NavRote.Main.route)
 
                         }
 

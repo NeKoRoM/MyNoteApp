@@ -5,10 +5,12 @@ import com.example.mynoteapp.database.DatabaseRepository
 const val TYPE_DATABASE = "type_database"
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
+const val FIREBASE_ID = "firebaseId"
 
 lateinit var REPOSITORY: DatabaseRepository
 lateinit var LOGIN: String
 lateinit var PASSWORD: String
+lateinit var DB_TYPE: String
 
 object Constants {
     object Keys {
@@ -31,6 +33,7 @@ object Constants {
         const val UPDATE_NOTE = "update note"
         const val LOGIN = "login"
         const val PASSWORD = "password"
+        const val EMPTY = ""
 
 
     }
